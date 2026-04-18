@@ -17,7 +17,10 @@
       <img class="hero__flower hero__flower--a" src="images/v1_1386.png" alt="">
       <img class="hero__flower hero__flower--b" src="images/v1_1386.png" alt="">
       <div class="hero__photo-wrap">
-        <img class="hero__photo-img" src="images/v1_1390.png" alt="Ефим и Катя">
+        <picture>
+          <source media="(min-width: 1000px)" srcset="images/1920x1200.png">
+          <img class="hero__photo-img" src="images/v1_1390.png" alt="Ефим и Катя">
+        </picture>
         <div class="hero__text-overlay">
           <p class="script hero__eyebrow">Свадьба</p>
           <h1 class="script hero__title">Ефима и Кати</h1>
@@ -106,28 +109,28 @@
           <div class="dress__carousel-viewport" aria-live="polite">
             <div class="dress__carousel-track">
               <div class="dress__slide">
-                <img src="images/references/09e8c918806c0b4fbdae76ed0b73d4cf.jpg" alt="">
+                <img src="images/References/09e8c918806c0b4fbdae76ed0b73d4cf.jpg" alt="">
               </div>
               <div class="dress__slide">
-                <img src="images/references/a15fad7035cedd1cfb470d3014ad31b7.jpg" alt="">
+                <img src="images/References/a15fad7035cedd1cfb470d3014ad31b7.jpg" alt="">
               </div>
               <div class="dress__slide">
-                <img src="images/references/e635907d7d9d07376e5ac91d4604260e.jpg" alt="">
+                <img src="images/References/e635907d7d9d07376e5ac91d4604260e.jpg" alt="">
               </div>
               <div class="dress__slide">
-                <img src="images/references/full-length-man-standing-sand-beach_1048944-10902259.jpg" alt="">
+                <img src="images/References/full-length-man-standing-sand-beach_1048944-10902259.jpg" alt="">
               </div>
               <div class="dress__slide">
-                <img src="images/references/happy-child-playing-with-sunflower-outdoor_411285-133.jpg" alt="">
+                <img src="images/References/happy-child-playing-with-sunflower-outdoor_411285-133.jpg" alt="">
               </div>
               <div class="dress__slide">
-                <img src="images/references/istockphoto-1068496608-170667a.jpg" alt="">
+                <img src="images/References/istockphoto-1068496608-170667a.jpg" alt="">
               </div>
               <div class="dress__slide">
-                <img src="images/references/orig.jfif" alt="">
+                <img src="images/References/orig.jfif" alt="">
               </div>
               <div class="dress__slide">
-                <img src="images/references/woman-walking-wildflowers-sunny-summer-day_230311-18660.jpg" alt="">
+                <img src="images/References/woman-walking-wildflowers-sunny-summer-day_230311-18660.jpg" alt="">
               </div>
             </div>
           </div>
@@ -213,7 +216,7 @@
               <label class="opt"><input type="checkbox">Пиво</label>
               <label class="opt"><input type="checkbox">Виски</label>
               <label class="opt"><input type="checkbox">Лёхин самогон</label>
-              <label class="opt opt--full"><input type="checkbox">Только безалкогольные напитки</label>
+              <label class="opt opt--full"><input type="checkbox">Безалкогольные напитки</label>
             </div>
           </fieldset>
 
@@ -240,35 +243,37 @@
       </div>
     </section>
 
-    <!-- ───────── SOCIAL ───────── -->
-    <section class="social">
-      <p class="social__text">
-        Для удобства, мы создали чат во вконтакте и телеграме.<br>
-        Там мы будем делиться более подробной информацией
-        о локации, размещении и торжестве.
-      </p>
-      <div class="social__links">
-        <a class="social__btn social__btn--vk" href="#">
-          <svg class="social__star" viewBox="0 0 190 187" aria-hidden="true"><use href="#dress-star-7"></use></svg>
-          <span>Vk</span>
-        </a>
-        <a class="social__btn social__btn--tg" href="#">
-          <svg class="social__star" viewBox="0 0 190 187" aria-hidden="true"><use href="#dress-star-7"></use></svg>
-          <span>Tg</span>
-        </a>
-      </div>
-    </section>
+    <div class="closing">
+      <!-- ───────── SOCIAL ───────── -->
+      <section class="social">
+        <p class="social__text">
+          Для удобства, мы создали чат во вконтакте и телеграме.<br>
+          Там мы будем делиться более подробной информацией
+          о локации, размещении и торжестве.
+        </p>
+        <div class="social__links">
+          <a class="social__btn social__btn--vk" href="#">
+            <svg class="social__star" viewBox="0 0 190 187" aria-hidden="true"><use href="#dress-star-7"></use></svg>
+            <span>Vk</span>
+          </a>
+          <a class="social__btn social__btn--tg" href="#">
+            <svg class="social__star" viewBox="0 0 190 187" aria-hidden="true"><use href="#dress-star-7"></use></svg>
+            <span>Tg</span>
+          </a>
+        </div>
+      </section>
 
-    <!-- ───────── FOOTER ───────── -->
-    <footer class="footer">
-      <p class="footer__contact">
-        На все вопросы, связанные с торжеством,<br>
-        с радостью ответит организатор нашей свадьбы:<br>
-        Юлия +79044966969
-      </p>
-      <a class="footer__telegram" href="#">Telegram</a>
-      <p class="script script--xl footer__goodbye">До скорой встречи!</p>
-    </footer>
+      <!-- ───────── FOOTER ───────── -->
+      <footer class="footer">
+        <p class="footer__contact">
+          На все вопросы, связанные с торжеством,<br>
+          с радостью ответит организатор нашей свадьбы:<br>
+          Юлия +79044966969
+        </p>
+        <a class="footer__telegram" href="#">Telegram</a>
+        <p class="script script--xl footer__goodbye">До скорой встречи!</p>
+      </footer>
+    </div>
 
   </div>
   <script>
@@ -279,8 +284,12 @@
       const slides = Array.from(dressCarousel.querySelectorAll('.dress__slide'));
       const prevButton = dressCarousel.querySelector('.dress__arrow--prev');
       const nextButton = dressCarousel.querySelector('.dress__arrow--next');
-      const visibleSlides = 3;
       let currentIndex = 0;
+
+      const getVisibleSlides = () => {
+        const value = Number.parseInt(getComputedStyle(dressCarousel).getPropertyValue('--visible-slides'), 10);
+        return Number.isFinite(value) && value > 0 ? value : 3;
+      };
 
       const getStep = () => {
         if (slides.length < 2) return slides[0]?.offsetWidth || 0;
@@ -288,11 +297,13 @@
       };
 
       const updateCarousel = () => {
+        const maxIndex = Math.max(slides.length - getVisibleSlides(), 0);
+        currentIndex = Math.min(currentIndex, maxIndex);
         track.style.transform = `translateX(${-currentIndex * getStep()}px)`;
       };
 
       const moveCarousel = (direction) => {
-        const maxIndex = Math.max(slides.length - visibleSlides, 0);
+        const maxIndex = Math.max(slides.length - getVisibleSlides(), 0);
         currentIndex += direction;
 
         if (currentIndex > maxIndex) currentIndex = 0;
