@@ -137,6 +137,7 @@ input, textarea, select {
   width: 100%;
   height: auto;
   display: block;
+  clip-path: inset(1px 0);
 }
 
 .hero__text-overlay {
@@ -213,7 +214,7 @@ input, textarea, select {
   right: 0;
   top: -100px;
   bottom: 0;
-  background: url('images/Slide\ 16_9.png') top center / cover no-repeat;
+  background: url('images/Vector 3435.svg') top center / 100% 100% no-repeat;
   z-index: -1;
 }
 .location__inner {
@@ -231,10 +232,44 @@ input, textarea, select {
 
 /* ───────── Schedule flower layout ───────── */
 .schedule-flower {
+  --schedule-flower-width: min(58vw, 230px);
+  --schedule-flower-bottom: -8px;
+  --schedule-bush-width: min(96vw, 410px);
+  --schedule-bush-offset: -34vw;
+  --schedule-bush-bottom: -54px;
   position: relative;
   margin: 20px auto 0;
   width: min(100%, 390px);
-  min-height: 360px;
+  min-height: 430px;
+}
+
+.schedule-flower__img {
+  display: block;
+  width: var(--schedule-flower-width);
+  height: auto;
+  position: absolute;
+  left: 50%;
+  bottom: var(--schedule-flower-bottom);
+  transform: translateX(-50%);
+  z-index: 1;
+}
+
+.schedule-flower__bush {
+  position: absolute;
+  bottom: var(--schedule-bush-bottom);
+  width: var(--schedule-bush-width);
+  height: auto;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.schedule-flower__bush--left {
+  left: var(--schedule-bush-offset);
+  transform: scaleX(-1);
+}
+
+.schedule-flower__bush--right {
+  right: var(--schedule-bush-offset);
 }
 
 .schedule-flower__col {
@@ -274,20 +309,22 @@ input, textarea, select {
 
 .schedule-flower .location__btn {
   position: absolute;
-  bottom: 24px;
+  bottom: 62px;
   left: 50%;
   transform: translateX(-50%);
   white-space: nowrap;
   margin: 0;
+  z-index: 3;
 }
 
 .schedule-flower .location__address {
   position: absolute;
-  bottom: -15px;
+  bottom: 24px;
   left: 0;
   right: 0;
   text-align: center;
   margin: 0;
+  z-index: 3;
 }
 
 .location__address {
@@ -321,9 +358,19 @@ input, textarea, select {
   position: absolute;
   left: 0;
   right: 0;
-  top: -25px;
-  height: 112px;
-  background: url('images/Subtract 2.png') top center / 170% auto repeat;
+  top: calc(-1 * var(--scallop-edge));
+  height: var(--scallop-edge);
+  background: var(--bg);
+  -webkit-mask-image:
+    radial-gradient(circle at 50% 100%, transparent 0 var(--scallop-hole), #000 calc(var(--scallop-hole) + .5px));
+  -webkit-mask-position: calc(50% + var(--scallop-step) / 2) bottom;
+  -webkit-mask-size: var(--scallop-step) var(--scallop-edge);
+  -webkit-mask-repeat: repeat-x;
+  mask-image:
+    radial-gradient(circle at 50% 100%, transparent 0 var(--scallop-hole), #000 calc(var(--scallop-hole) + .5px));
+  mask-position: calc(50% + var(--scallop-step) / 2) bottom;
+  mask-size: var(--scallop-step) var(--scallop-edge);
+  mask-repeat: repeat-x;
   pointer-events: none;
   z-index: 0;
 }
@@ -501,13 +548,13 @@ input, textarea, select {
 }
 .details__row {
   display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  gap: 2px;
-  align-items: start;
+  grid-template-columns: clamp(104px, 30vw, 150px) minmax(0, 1fr);
+  gap: 14px;
+  align-items: center;
 }
 .details__row dt {
   font-size: 34px;
-  text-align: left;
+  text-align: center;
   color: var(--brown);
 }
 .details__row dd {
@@ -520,6 +567,8 @@ input, textarea, select {
 
 /* ───────── Form section ───────── */
 .form-section {
+  --form-width: min(calc(100vw - (var(--page-pad) * 2)), 560px);
+  --form-clip-offset: 41px;
   background: var(--bg);
   padding: 30px var(--page-pad) 40px;
   position: relative;
@@ -527,10 +576,15 @@ input, textarea, select {
 .form-section__clip {
   position: absolute;
   top: 9px;
-  left: calc(var(--page-pad) + 41px);
+  left: calc(50% - (var(--form-width) / 2) + var(--form-clip-offset));
   width: 18px;
   z-index: 3;
   transform: rotate(-14deg);
+}
+.form-section__stamp-shadow {
+  width: min(100%, 560px);
+  margin: 0 auto;
+  filter: drop-shadow(0 4px 4px rgba(88, 61, 45, .28));
 }
 .stamp--form {
   --stamp-hole: var(--scallop-hole);
@@ -540,9 +594,43 @@ input, textarea, select {
   isolation: isolate;
   overflow: visible;
   background: #FBE5DF;
-  width: min(100%, 560px);
-  margin: 0 auto;
+  width: 100%;
   padding: 62px clamp(32px, 9vw, 48px) 0;
+  clip-path: inset(2px 0);
+  -webkit-mask-image:
+    radial-gradient(circle at 50% 0, transparent 0 var(--stamp-hole), #000 calc(var(--stamp-hole) + .5px)),
+    radial-gradient(circle at 50% 100%, transparent 0 var(--stamp-hole), #000 calc(var(--stamp-hole) + .5px)),
+    radial-gradient(circle at 0 50%, transparent 0 var(--stamp-hole), #000 calc(var(--stamp-hole) + .5px)),
+    radial-gradient(circle at 100% 50%, transparent 0 var(--stamp-hole), #000 calc(var(--stamp-hole) + .5px));
+  -webkit-mask-position:
+    calc(50% + var(--stamp-step) / 2) top,
+    calc(50% + var(--stamp-step) / 2) bottom,
+    left calc(50% + var(--stamp-step) / 2),
+    right calc(50% + var(--stamp-step) / 2);
+  -webkit-mask-size:
+    var(--stamp-step) 100%,
+    var(--stamp-step) 100%,
+    100% var(--stamp-step),
+    100% var(--stamp-step);
+  -webkit-mask-repeat: repeat-x, repeat-x, repeat-y, repeat-y;
+  -webkit-mask-composite: source-in, source-in, source-in;
+  mask-image:
+    radial-gradient(circle at 50% 0, transparent 0 var(--stamp-hole), #000 calc(var(--stamp-hole) + .5px)),
+    radial-gradient(circle at 50% 100%, transparent 0 var(--stamp-hole), #000 calc(var(--stamp-hole) + .5px)),
+    radial-gradient(circle at 0 50%, transparent 0 var(--stamp-hole), #000 calc(var(--stamp-hole) + .5px)),
+    radial-gradient(circle at 100% 50%, transparent 0 var(--stamp-hole), #000 calc(var(--stamp-hole) + .5px));
+  mask-position:
+    calc(50% + var(--stamp-step) / 2) top,
+    calc(50% + var(--stamp-step) / 2) bottom,
+    left calc(50% + var(--stamp-step) / 2),
+    right calc(50% + var(--stamp-step) / 2);
+  mask-size:
+    var(--stamp-step) 100%,
+    var(--stamp-step) 100%,
+    100% var(--stamp-step),
+    100% var(--stamp-step);
+  mask-repeat: repeat-x, repeat-x, repeat-y, repeat-y;
+  mask-composite: intersect, intersect, intersect;
 }
 .stamp--form::before,
 .stamp--form::after {
@@ -865,6 +953,9 @@ label {
   }
 
   .schedule-flower {
+    --schedule-flower-width: min(58vw, 240px);
+    --schedule-bush-width: min(96vw, 410px);
+    --schedule-bush-offset: -33vw;
     width: min(100%, 470px);
   }
 
@@ -897,8 +988,15 @@ label {
     gap: 20px;
   }
 
-  .stamp--form {
+  .form-section {
+    --form-width: min(calc(100vw - (var(--page-pad) * 2)), 640px);
+  }
+
+  .form-section__stamp-shadow {
     width: min(100%, 640px);
+  }
+
+  .stamp--form {
     padding-inline: 72px;
   }
 }
@@ -956,8 +1054,8 @@ label {
   }
 
   .hero__flower--a {
-    top: 48px;
-    right: max(var(--page-pad), calc((100vw - var(--section-max)) / 2 + 104px));
+    top: 20px;
+    right: 110px;
   }
 
   .hero__flower--b {
@@ -1039,6 +1137,11 @@ label {
   }
 
   .schedule-flower {
+    --schedule-flower-width: 300px;
+    --schedule-bush-width: 250px;
+    --schedule-bush-offset: 36px;
+    --schedule-bush-bottom: 20px;
+    --schedule-flower-bottom: 12px;
     grid-column: 2;
     grid-row: 1 / span 3;
     width: 100%;
@@ -1082,11 +1185,6 @@ label {
     font-size: 12px;
   }
 
-  .btn {
-    font-size: 14px;
-    padding: 15px 40px;
-  }
-
   .dress {
     width: min(calc(100% - (var(--page-pad) + var(--page-pad))), var(--section-max));
     margin: 0 auto;
@@ -1098,12 +1196,10 @@ label {
   }
 
   .dress::before {
-    left: 50%;
-    right: auto;
-    width: 100vw;
-    height: 138px;
-    transform: translateX(-50%);
-    background-size: 760px auto;
+    left: 0;
+    right: 0;
+    width: auto;
+    height: var(--scallop-edge);
   }
 
   .dress__blossom {
@@ -1229,20 +1325,24 @@ label {
   }
 
   .form-section {
+    --form-width: min(calc(100vw - (var(--page-pad) * 2)), 820px);
+    --form-clip-offset: 30px;
     padding: 78px var(--page-pad) 92px;
   }
 
   .form-section__clip {
     top: 54px;
-    left: max(calc(50% - 380px), var(--page-pad));
     width: 26px;
+  }
+
+  .form-section__stamp-shadow {
+    width: min(100%, 820px);
   }
 
   .stamp--form {
     --stamp-hole: 24px;
     --stamp-step: 82px;
     --stamp-edge: 46px;
-    width: min(100%, 820px);
     padding: 88px 92px 10px;
   }
 
@@ -1271,34 +1371,27 @@ label {
     gap: 12px 22px;
   }
 
-  .btn--submit {
-    margin: 10px auto 0;
-  }
 
   .closing {
     width: min(calc(100% - (var(--page-pad) + var(--page-pad))), var(--section-max));
     margin: 0 auto;
     padding: 28px 0 96px;
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(340px, .8fr);
-    gap: 72px;
-    align-items: start;
   }
 
   .social,
   .footer {
     padding: 0;
-    text-align: left;
+    text-align: center;
   }
 
   .social__text {
-    margin: 0 0 24px;
+    margin: 0 auto 24px;
     max-width: 60ch;
     font-size: 13px;
   }
 
   .social__links {
-    justify-content: flex-start;
+    justify-content: center;
   }
 
   .social__btn {
