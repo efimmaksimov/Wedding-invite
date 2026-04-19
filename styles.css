@@ -1325,7 +1325,6 @@ label {
   .form-section {
     --form-width: min(calc(100vw - (var(--page-pad) * 2)), 820px);
     --form-clip-offset: 30px;
-    --form-clip-top: 28px;
     padding: 0 var(--page-pad) 20px;
   }
 
