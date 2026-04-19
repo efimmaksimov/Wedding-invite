@@ -133,6 +133,45 @@ input, textarea, select {
   mask-composite: intersect;
 }
 
+@media (min-width: 561px) {
+  .hero__photo-wrap {
+    -webkit-mask-image:
+      radial-gradient(circle at 50% 0, transparent 0 var(--hero-scallop-hole), #000 calc(var(--hero-scallop-hole) + .5px)),
+      radial-gradient(circle at 50% 100%, transparent 0 var(--hero-scallop-hole), #000 calc(var(--hero-scallop-hole) + .5px)),
+      radial-gradient(circle at 0 50%, transparent 0 var(--hero-scallop-hole), #000 calc(var(--hero-scallop-hole) + .5px)),
+      radial-gradient(circle at 100% 50%, transparent 0 var(--hero-scallop-hole), #000 calc(var(--hero-scallop-hole) + .5px));
+    -webkit-mask-position:
+      calc(50% + var(--hero-scallop-step) / 2) top,
+      calc(50% + var(--hero-scallop-step) / 2) bottom,
+      left calc(50% + var(--hero-scallop-step) / 2),
+      right calc(50% + var(--hero-scallop-step) / 2);
+    -webkit-mask-size:
+      var(--hero-scallop-step) 100%,
+      var(--hero-scallop-step) 100%,
+      100% var(--hero-scallop-step),
+      100% var(--hero-scallop-step);
+    -webkit-mask-repeat: repeat-x, repeat-x, repeat-y, repeat-y;
+    -webkit-mask-composite: source-in, source-in, source-in;
+    mask-image:
+      radial-gradient(circle at 50% 0, transparent 0 var(--hero-scallop-hole), #000 calc(var(--hero-scallop-hole) + .5px)),
+      radial-gradient(circle at 50% 100%, transparent 0 var(--hero-scallop-hole), #000 calc(var(--hero-scallop-hole) + .5px)),
+      radial-gradient(circle at 0 50%, transparent 0 var(--hero-scallop-hole), #000 calc(var(--hero-scallop-hole) + .5px)),
+      radial-gradient(circle at 100% 50%, transparent 0 var(--hero-scallop-hole), #000 calc(var(--hero-scallop-hole) + .5px));
+    mask-position:
+      calc(50% + var(--hero-scallop-step) / 2) top,
+      calc(50% + var(--hero-scallop-step) / 2) bottom,
+      left calc(50% + var(--hero-scallop-step) / 2),
+      right calc(50% + var(--hero-scallop-step) / 2);
+    mask-size:
+      var(--hero-scallop-step) 100%,
+      var(--hero-scallop-step) 100%,
+      100% var(--hero-scallop-step),
+      100% var(--hero-scallop-step);
+    mask-repeat: repeat-x, repeat-x, repeat-y, repeat-y;
+    mask-composite: intersect, intersect, intersect;
+  }
+}
+
 .hero__photo-img {
   width: 100%;
   height: auto;
@@ -200,8 +239,6 @@ input, textarea, select {
 .location {
   position: relative;
   margin-top: 30px;
-  padding-top: 30px;
-  padding-bottom: 60px;
   color: #fff;
   text-align: center;
   isolation: isolate;
@@ -232,15 +269,15 @@ input, textarea, select {
 
 /* ───────── Schedule flower layout ───────── */
 .schedule-flower {
-  --schedule-flower-width: min(58vw, 230px);
-  --schedule-flower-bottom: -8px;
+  --schedule-flower-width: min(65vw, 160px);
+  --schedule-flower-bottom: 20px;
   --schedule-bush-width: min(96vw, 410px);
-  --schedule-bush-offset: -34vw;
-  --schedule-bush-bottom: -54px;
+  --schedule-bush-center-offset: 140px;
+  --schedule-bush-bottom: -30px;
   position: relative;
   margin: 20px auto 0;
   width: min(100%, 390px);
-  min-height: 430px;
+  min-height: 440px;
 }
 
 .schedule-flower__img {
@@ -256,6 +293,7 @@ input, textarea, select {
 
 .schedule-flower__bush {
   position: absolute;
+  left: 50%;
   bottom: var(--schedule-bush-bottom);
   width: var(--schedule-bush-width);
   height: auto;
@@ -264,12 +302,11 @@ input, textarea, select {
 }
 
 .schedule-flower__bush--left {
-  left: var(--schedule-bush-offset);
-  transform: scaleX(-1);
+  transform: translateX(calc(-50% - var(--schedule-bush-center-offset))) scaleX(-1);
 }
 
 .schedule-flower__bush--right {
-  right: var(--schedule-bush-offset);
+  transform: translateX(calc(-50% + var(--schedule-bush-center-offset)));
 }
 
 .schedule-flower__col {
@@ -309,7 +346,7 @@ input, textarea, select {
 
 .schedule-flower .location__btn {
   position: absolute;
-  bottom: 62px;
+  bottom: 82px;
   left: 50%;
   transform: translateX(-50%);
   white-space: nowrap;
@@ -319,7 +356,7 @@ input, textarea, select {
 
 .schedule-flower .location__address {
   position: absolute;
-  bottom: 24px;
+  bottom: 44px;
   left: 0;
   right: 0;
   text-align: center;
@@ -337,10 +374,10 @@ input, textarea, select {
   display: inline-block;
   background: var(--bg);
   color: var(--brown);
-  padding: 14px 34px;
+  padding: 5px 20px;
   border-radius: 40px;
   text-decoration: none;
-  font-size: 13px;
+  font-size: 18px;
   font-weight: 500;
   box-shadow: 0 2px 8px rgba(0,0,0,.12);
 }
@@ -358,21 +395,22 @@ input, textarea, select {
   position: absolute;
   left: 0;
   right: 0;
-  top: calc(-1 * var(--scallop-edge));
+  top: calc(-1 * calc(var(--scallop-edge) - 2px));
   height: var(--scallop-edge);
   background: var(--bg);
   -webkit-mask-image:
-    radial-gradient(circle at 50% 100%, transparent 0 var(--scallop-hole), #000 calc(var(--scallop-hole) + .5px));
-  -webkit-mask-position: calc(50% + var(--scallop-step) / 2) bottom;
+    radial-gradient(circle at 50% 0, transparent 0 var(--scallop-hole), #000 calc(var(--scallop-hole) + .5px));
+  -webkit-mask-position: calc(50% + var(--scallop-step) / 2) top;
   -webkit-mask-size: var(--scallop-step) var(--scallop-edge);
   -webkit-mask-repeat: repeat-x;
   mask-image:
-    radial-gradient(circle at 50% 100%, transparent 0 var(--scallop-hole), #000 calc(var(--scallop-hole) + .5px));
-  mask-position: calc(50% + var(--scallop-step) / 2) bottom;
+    radial-gradient(circle at 50% 0, transparent 0 var(--scallop-hole), #000 calc(var(--scallop-hole) + .5px));
+  mask-position: calc(50% + var(--scallop-step) / 2) top;
   mask-size: var(--scallop-step) var(--scallop-edge);
   mask-repeat: repeat-x;
   pointer-events: none;
   z-index: 0;
+  clip-path: inset(1px 0);
 }
 .dress > * {
   position: relative;
@@ -421,7 +459,7 @@ input, textarea, select {
   height: 34px;
   display: grid;
   place-items: center;
-  background: rgba(111, 93, 79, .58);
+  background: rgba(255, 255, 255, 0.78);
   border-radius: 8px;
   opacity: .9;
   transform: translateY(-50%);
@@ -508,11 +546,10 @@ input, textarea, select {
   position: relative;
   width: min(100%, 330px);
   height: 198px;
-  margin: 0 auto 2px;
 }
 .details__flower {
   position: absolute;
-  left: 186px;
+  left: 194px;
   width: 60px;
   top: -30px;
   transform: scaleX(-1);
@@ -521,14 +558,13 @@ input, textarea, select {
 }
 .details__pillow {
   position: absolute;
-  left: -18px;
   width: 220px;
   transform: rotate(-16deg);
   z-index: 2;
 }
 .details__tag span {
   position: absolute;
-  left: -22px;
+  left: -4px;
   bottom: 105px;
   width: 220px;
   display: flex;
@@ -953,9 +989,7 @@ label {
   }
 
   .schedule-flower {
-    --schedule-flower-width: min(58vw, 240px);
     --schedule-bush-width: min(96vw, 410px);
-    --schedule-bush-offset: -33vw;
     width: min(100%, 470px);
   }
 
@@ -1055,7 +1089,7 @@ label {
 
   .hero__flower--a {
     top: 20px;
-    right: 110px;
+    right: calc(max(var(--page-pad), calc((100vw - var(--section-max)) / 2)) + 80px);
   }
 
   .hero__flower--b {
@@ -1101,98 +1135,11 @@ label {
   .location {
     width: min(calc(100% - (var(--page-pad) + var(--page-pad))), var(--section-max));
     margin: 0 auto;
-    padding: 96px 72px 82px;
-    background: var(--olive);
-    border-radius: 120px 8px 8px 8px;
-    text-align: left;
-    overflow: hidden;
-  }
-
-  .location::before {
-    display: none;
-  }
-
-  .location__inner {
-    width: 100%;
-    max-width: none;
-    padding: 0;
-    display: grid;
-    grid-template-columns: minmax(280px, .85fr) minmax(430px, 1.15fr);
-    grid-template-rows: auto auto 1fr;
-    gap: 64px;
-    align-items: start;
-  }
-
-  .location .section-title {
-    text-align: left;
-    font-size: 76px;
-    margin: 0 0 28px;
-  }
-
-  .location__desc {
-    max-width: 430px;
-    margin: 0;
-    font-size: 14px;
-    line-height: 1.8;
-  }
-
-  .schedule-flower {
-    --schedule-flower-width: 300px;
-    --schedule-bush-width: 250px;
-    --schedule-bush-offset: 36px;
-    --schedule-bush-bottom: 20px;
-    --schedule-flower-bottom: 12px;
-    grid-column: 2;
-    grid-row: 1 / span 3;
-    width: 100%;
-    min-height: 610px;
-    margin: 0;
-  }
-
-  .schedule-flower__col {
-    width: 150px;
-  }
-
-  .schedule-flower__col--left {
-    left: 2%;
-    top: 170px;
-    gap: 96px;
-  }
-
-  .schedule-flower__col--right {
-    right: 2%;
-    top: 80px;
-    gap: 86px;
-  }
-
-  .schedule__time {
-    font-size: 34px;
-  }
-
-  .schedule__label {
-    font-size: 14px;
-  }
-
-  .schedule-flower .location__btn {
-    bottom: 48px;
-  }
-
-  .schedule-flower .location__address {
-    bottom: 10px;
-  }
-
-  .location__address {
-    font-size: 12px;
   }
 
   .dress {
     width: min(calc(100% - (var(--page-pad) + var(--page-pad))), var(--section-max));
     margin: 0 auto;
-    padding: 104px 0 76px;
-    display: grid;
-    grid-template-columns: 360px minmax(0, 1fr);
-    column-gap: 76px;
-    align-items: start;
   }
 
   .dress::before {
@@ -1273,7 +1220,7 @@ label {
     margin: 0 auto;
     padding: 54px 0 86px;
     display: grid;
-    grid-template-columns: 280px 1fr;
+    grid-template-columns: 320px 1fr;
     gap: 58px;
     align-items: start;
   }
@@ -1285,19 +1232,18 @@ label {
   }
 
   .details__flower {
-    left: 190px;
-    top: -22px;
+    left: 280px;
+    top: -52px;
     width: 76px;
   }
 
   .details__pillow {
-    left: -16px;
+    left: 44px;
     width: 270px;
   }
 
   .details__tag span {
-    left: -14px;
-    bottom: 86px;
+    left: 40px;
     width: 270px;
     font-size: 56px;
   }
@@ -1422,10 +1368,6 @@ label {
   .hero__photo-wrap {
     height: min(800px, 72vh);
     min-height: 620px;
-  }
-
-  .location {
-    padding: 106px 84px 90px;
   }
 
   .dress {
