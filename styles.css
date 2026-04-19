@@ -82,6 +82,10 @@ input, textarea, select {
   overflow: hidden;
 }
 
+.hero__title {
+  font-size: 44px;
+}
+
 .hero__flower {
   position: absolute;
   width: 100px;
@@ -187,17 +191,11 @@ input, textarea, select {
   z-index: 3;
   color: #fff;
   text-align: center;
-  padding: 0 var(--page-pad);
 }
 
 .hero__eyebrow {
-  font-size: 24px;
-  margin-bottom: -20px;
-}
-
-.hero__title {
-  font-size: 56px;
-  line-height: 1.05;
+  font-size: 22px;
+  margin-bottom: -10px;
 }
 
 .hero__heart {
@@ -228,7 +226,7 @@ input, textarea, select {
   justify-content: center;
   margin: 28px auto 0;
   width: fit-content;
-  animation: hero-invite-arrow-float 1.8s cubic-bezier(0.45, 0, 0.55, 1) infinite alternate;
+  animation: hero-invite-arrow-float 1.2s cubic-bezier(0.45, 0, 0.55, 1) infinite alternate;
 }
 
 .hero-invite-arrow img {
@@ -242,7 +240,7 @@ input, textarea, select {
   }
 
   to {
-    transform: translateY(12px);
+    transform: translateY(6px);
   }
 }
 
@@ -971,10 +969,6 @@ label {
 
   .hero__eyebrow {
     font-size: 22px;
-  }
-
-  .hero__title {
-    font-size: 46px;
   }
 
   .schedule-flower__col {
