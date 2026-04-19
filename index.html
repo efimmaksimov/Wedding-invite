@@ -34,8 +34,7 @@
 
     <!-- ───────── INVITE ───────── -->
     <section class="invite">
-      <p class="script script--sm invite__dear">Дорогие</p>
-      <h2 class="script script--xl invite__parents">Мама и Папа</h2>
+      <h2 class="script script--xl invite__parents">Дорогие гости</h2>
       <p class="invite__text">
         приглашаем разделить этот особенный<br>
         день вместе с нами
@@ -82,7 +81,7 @@
               <span class="schedule__label">завершение<br>вечера</span>
             </div>
           </div>
-          <a class="btn location__btn" href="#">Открыть карту</a>
+          <a class="btn location__btn" href="https://go.2gis.com/YC2b6" target="_blank" rel="noopener">Открыть карту</a>
           <p class="location__address">
             Тюменская область, Червишевский тракт,<br>
             18 километр, стр. 1
@@ -146,7 +145,7 @@
       </div>
 
       <p class="dress__note">
-        Просим избегать черного и других темных цветов. Белый цвет
+        Просим избегать черного и других темных цветов. Белый
         просим оставить невесте, этот цвет допустим также
         для рубашек и поло мужчин.
         Если будут вопросы, можете написать нам.
@@ -186,52 +185,70 @@
       <div class="stamp stamp--form">
         <h2 class="script script--xl section-title">Анкета гостя</h2>
 
-        <form class="form" onsubmit="return false">
+        <iframe class="google-form-target" name="google-form-target" title="Google Forms response"></iframe>
+
+        <form
+          class="form"
+          id="guest-form"
+          action="https://docs.google.com/forms/d/e/1FAIpQLSdThln_rFUqUM8PN3eg8qSPeMQRvOTP1wRs-WzvL0nlt-7E0g/formResponse"
+          method="POST"
+          target="google-form-target"
+          novalidate
+        >
 
           <label class="field">
-            <span class="field__label">Ваши Имя и Фамилия</span>
-            <input type="text">
+            <span class="field__label">Ваши имя и фамилия</span>
+            <span class="field__label field__label--companion">Если вы будете с парой, укажите несколько имён</span>
+            <input type="text" name="entry.2120727497" autocomplete="name" aria-required="true">
+            <span class="form__error" data-error-for="entry.2120727497" hidden>Укажите имя и фамилию</span>
           </label>
 
           <fieldset class="group">
             <legend>Вы сможете присутствовать на нашем свадебном торжестве?</legend>
             <div class="group__options group__options--row">
-              <label class="opt"><input type="radio" name="attend">Да</label>
-              <label class="opt"><input type="radio" name="attend">Нет</label>
+              <label class="opt"><input type="radio" name="entry.943889386" value="Да" aria-required="true">Да</label>
+              <label class="opt"><input type="radio" name="entry.943889386" value="Нет" aria-required="true">Нет</label>
             </div>
+            <span class="form__error" data-error-for="entry.943889386" hidden>Выберите один вариант</span>
           </fieldset>
 
           <fieldset class="group">
             <legend>Какой алкоголь предпочитаете?</legend>
             <div class="group__options group__options--grid">
-              <label class="opt"><input type="checkbox">Игристое</label>
-              <label class="opt"><input type="checkbox">Красное вино</label>
-              <label class="opt"><input type="checkbox">Белое вино</label>
-              <label class="opt"><input type="checkbox">Пиво</label>
-              <label class="opt"><input type="checkbox">Виски</label>
-              <label class="opt"><input type="checkbox">Лёхин самогон</label>
-              <label class="opt opt--full"><input type="checkbox">Безалкогольные напитки</label>
+              <label class="opt"><input type="checkbox" name="entry.3966304" value="Игристое">Игристое</label>
+              <label class="opt"><input type="checkbox" name="entry.3966304" value="Красное вино">Красное вино</label>
+              <label class="opt"><input type="checkbox" name="entry.3966304" value="Белое вино">Белое вино</label>
+              <label class="opt"><input type="checkbox" name="entry.3966304" value="Пиво">Пиво</label>
+              <label class="opt"><input type="checkbox" name="entry.3966304" value="Виски">Виски</label>
+              <label class="opt"><input type="checkbox" name="entry.3966304" value="Лёхин самогон">Лёхин самогон</label>
+              <label class="opt opt--full"><input type="checkbox" name="entry.3966304" value="Безалкогольные напитки">Безалкогольные напитки</label>
             </div>
+            <span class="form__error" data-error-for="entry.3966304" hidden>Выберите хотя бы один вариант</span>
           </fieldset>
 
           <fieldset class="group">
             <legend>Мы забронировали три домика на территории базы отдыха. Планируете ли вы остаться?</legend>
             <div class="group__options">
-              <label class="opt"><input type="radio" name="stay">Только первый день</label>
-              <label class="opt"><input type="radio" name="stay">Первый и второй день</label>
-              <label class="opt"><input type="radio" name="stay">Нет</label>
+              <label class="opt"><input type="radio" name="entry.777208855" value="Да, на первую ночь" aria-required="true">Только первый день</label>
+              <label class="opt"><input type="radio" name="entry.777208855" value="Да, на первую и вторую ночь" aria-required="true">Первый и второй день</label>
+              <label class="opt"><input type="radio" name="entry.777208855" value="Нет" aria-required="true">Нет</label>
             </div>
+            <span class="form__error" data-error-for="entry.777208855" hidden>Выберите один вариант</span>
           </fieldset>
 
           <fieldset class="group">
             <legend>Если вы не планируете остаться, нужен ли вам обратный трансфер с площадки в город (Тюмень)?</legend>
             <div class="group__options group__options--row">
-              <label class="opt"><input type="radio" name="transfer">Да</label>
-              <label class="opt"><input type="radio" name="transfer">Нет</label>
+              <label class="opt"><input type="radio" name="entry.1550613055" value="Да">Да</label>
+              <label class="opt"><input type="radio" name="entry.1550613055" value="Нет">Нет</label>
             </div>
           </fieldset>
 
+          <input type="hidden" name="fvv" value="1">
+          <input type="hidden" name="pageHistory" value="0">
+
           <button type="submit" class="btn btn--submit">Отправить</button>
+          <p class="form__message" hidden>Спасибо! Ответ отправлен.</p>
 
         </form>
       </div>
@@ -247,11 +264,11 @@
           о локации, размещении и торжестве.
         </p>
         <div class="social__links">
-          <a class="social__btn social__btn--vk" href="#">
+          <a class="social__btn social__btn--vk" href="https://vk.me/join/GcLyZBeyudycU85c668MhD/5TQXXv34nzjs=" target="_blank" rel="noopener">
             <svg class="social__star" viewBox="0 0 190 187" aria-hidden="true"><use href="#dress-star-7"></use></svg>
             <span>Vk</span>
           </a>
-          <a class="social__btn social__btn--tg" href="#">
+          <a class="social__btn social__btn--tg" href="https://t.me/+tGmOf3wL2MA3YTFi" target="_blank" rel="noopener">
             <svg class="social__star" viewBox="0 0 190 187" aria-hidden="true"><use href="#dress-star-7"></use></svg>
             <span>Tg</span>
           </a>
@@ -265,7 +282,7 @@
           с радостью ответит организатор нашей свадьбы:<br>
           Юлия +79044966969
         </p>
-        <a class="footer__telegram" href="#">Telegram</a>
+        <a class="footer__telegram" href="https://t.me/xoxlomawedding" target="_blank" rel="noopener">Telegram</a>
         <p class="script script--xl footer__goodbye">До скорой встречи!</p>
       </footer>
     </div>
@@ -273,6 +290,79 @@
   </div>
   <script>
     const dressCarousel = document.querySelector('.dress__carousel');
+    const guestForm = document.querySelector('#guest-form');
+
+    if (guestForm) {
+      const googleFormTarget = document.querySelector('iframe[name="google-form-target"]');
+      const submitButton = guestForm.querySelector('.btn--submit');
+      const successMessage = guestForm.querySelector('.form__message');
+      let waitingForGoogleResponse = false;
+
+      const requiredFields = [
+        { name: 'entry.2120727497', type: 'text' },
+        { name: 'entry.943889386', type: 'choice' },
+        { name: 'entry.3966304', type: 'choice' },
+        { name: 'entry.777208855', type: 'choice' },
+      ];
+
+      const getControls = (name) => Array.from(guestForm.querySelectorAll(`[name="${name}"]`));
+      const getError = (name) => guestForm.querySelector(`[data-error-for="${name}"]`);
+
+      const validateField = ({ name, type }, showError = true) => {
+        const controls = getControls(name);
+        const isValid = type === 'text'
+          ? controls[0]?.value.trim().length > 0
+          : controls.some((control) => control.checked);
+        const error = getError(name);
+
+        if (error) error.hidden = isValid || !showError;
+
+        return isValid;
+      };
+
+      guestForm.addEventListener('input', (event) => {
+        const field = requiredFields.find(({ name }) => name === event.target.name);
+        if (field) validateField(field, false);
+      });
+
+      guestForm.addEventListener('change', (event) => {
+        const field = requiredFields.find(({ name }) => name === event.target.name);
+        if (field) validateField(field, false);
+      });
+
+      guestForm.addEventListener('submit', (event) => {
+        let firstInvalidField = null;
+
+        requiredFields.forEach((field) => {
+          if (!validateField(field) && !firstInvalidField) {
+            firstInvalidField = field;
+          }
+        });
+
+        if (firstInvalidField) {
+          event.preventDefault();
+          const firstControl = getControls(firstInvalidField.name)[0];
+          firstControl?.closest('.field, .group')?.scrollIntoView({ block: 'center', behavior: 'smooth' });
+          if (firstInvalidField.type === 'text') firstControl?.focus();
+          return;
+        }
+
+        waitingForGoogleResponse = true;
+        successMessage.hidden = true;
+        submitButton.disabled = true;
+        submitButton.textContent = 'Отправляем...';
+      });
+
+      googleFormTarget?.addEventListener('load', () => {
+        if (!waitingForGoogleResponse) return;
+
+        waitingForGoogleResponse = false;
+        guestForm.reset();
+        submitButton.disabled = false;
+        submitButton.textContent = 'Отправить';
+        successMessage.hidden = false;
+      });
+    }
 
     if (dressCarousel) {
       const track = dressCarousel.querySelector('.dress__carousel-track');
