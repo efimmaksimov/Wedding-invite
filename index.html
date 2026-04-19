@@ -4,6 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Свадьба Ефима и Кати</title>
+  <link rel="preload" href="fonts/ofont-ru_snell-roundhand-russian.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="images/v1_1390.webp" as="image" type="image/webp" media="(max-width: 999px)" fetchpriority="high">
+  <link rel="preload" href="images/1920x1200.webp" as="image" type="image/webp" media="(min-width: 1000px)" fetchpriority="high">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -14,23 +17,27 @@
 
     <!-- ───────── HERO ───────── -->
     <section class="hero">
-      <img class="hero__flower hero__flower--a" src="images/v1_1386.png" alt="">
-      <img class="hero__flower hero__flower--b" src="images/v1_1386.png" alt="">
+      <img class="hero__flower hero__flower--a" src="images/v1_1386.webp" alt="" decoding="async" fetchpriority="low">
+      <img class="hero__flower hero__flower--b" src="images/v1_1386.webp" alt="" decoding="async" fetchpriority="low">
       <div class="hero__photo-wrap">
         <picture>
-          <source media="(min-width: 1000px)" srcset="images/1920x1200.png">
-          <img class="hero__photo-img" src="images/v1_1390.png" alt="Ефим и Катя">
+          <source media="(min-width: 1000px)" srcset="images/1920x1200.webp" width="1600" height="1000">
+          <img class="hero__photo-img" src="images/v1_1390.webp" alt="Ефим и Катя" width="860" height="1290" decoding="sync" fetchpriority="high">
         </picture>
         <div class="hero__text-overlay">
           <p class="script hero__eyebrow">Свадьба</p>
           <h1 class="script hero__title">Ефима и Кати</h1>
         </div>
-        <img class="hero__heart" src="images/Vector 3438.svg" alt="">
+        <img class="hero__heart" src="images/Vector 3438.svg" alt="" decoding="async" fetchpriority="low">
         <div class="hero__date-overlay">
           <span class="script">25/07/2026</span>
         </div>
       </div>
     </section>
+
+    <button class="hero-invite-arrow" type="button" aria-label="Перейти к приглашению">
+      <img src="images/v1_1406.png" alt="" decoding="async" fetchpriority="low">
+    </button>
 
     <!-- ───────── INVITE ───────── -->
     <section class="invite">
@@ -54,9 +61,9 @@
         </p>
 
         <div class="schedule-flower">
-          <img class="schedule-flower__img" src="images/image_1776529606166.png" alt="">
-          <img class="schedule-flower__bush schedule-flower__bush--left" src="images/a-lush-dense-bush-composed-of-intricate-grass-and-delicate-wildflowers-on-a-transparent-background-free-png.png" alt="">
-          <img class="schedule-flower__bush schedule-flower__bush--right" src="images/a-lush-dense-bush-composed-of-intricate-grass-and-delicate-wildflowers-on-a-transparent-background-free-png.png" alt="">
+          <img class="schedule-flower__img" src="images/image_1776529606166.webp" alt="" loading="lazy" decoding="async">
+          <img class="schedule-flower__bush schedule-flower__bush--left" src="images/a-lush-dense-bush-composed-of-intricate-grass-and-delicate-wildflowers-on-a-transparent-background-f.webp" alt="" loading="lazy" decoding="async">
+          <img class="schedule-flower__bush schedule-flower__bush--right" src="images/a-lush-dense-bush-composed-of-intricate-grass-and-delicate-wildflowers-on-a-transparent-background-f.webp" alt="" loading="lazy" decoding="async">
           <div class="schedule-flower__col schedule-flower__col--left">
             <div class="schedule__item">
               <span class="schedule__time script">15:00</span>
@@ -92,7 +99,7 @@
 
     <!-- ───────── DRESS CODE ───────── -->
     <section class="dress">
-      <img class="dress__blossom" src="images/v1_1497.png" alt="">
+      <img class="dress__blossom" src="images/v1_1497.webp" alt="" loading="lazy" decoding="async">
       <h2 class="script script--xl section-title">Дресс-код</h2>
       <p class="dress__text">
         Наша свадьба пройдет летом на улице
@@ -105,29 +112,29 @@
       <div class="dress__carousel-bg">
         <div class="dress__carousel">
           <button class="dress__arrow dress__arrow--prev" type="button" aria-label="Предыдущий">
-            <img src="images/v1_1405.png" alt="">
+            <img src="images/v1_1405.png" alt="" loading="lazy" decoding="async">
           </button>
           <div class="dress__carousel-viewport" aria-live="polite">
             <div class="dress__carousel-track">
               <div class="dress__slide">
-                <img src="images/References/image 1311.png" alt="">
+                <img src="images/References/image 1311.png" alt="" loading="lazy" decoding="async">
               </div>
               <div class="dress__slide">
-                <img src="images/References/image 1312.png" alt="">
+                <img src="images/References/image 1312.png" alt="" loading="lazy" decoding="async">
               </div>
               <div class="dress__slide">
-                <img src="images/References/image 1313.png" alt="">
+                <img src="images/References/image 1313.png" alt="" loading="lazy" decoding="async">
               </div>
               <div class="dress__slide">
-                <img src="images/References/image 1316.png" alt="">
+                <img src="images/References/image 1316.png" alt="" loading="lazy" decoding="async">
               </div>
               <div class="dress__slide">
-                <img src="images/References/image 1314.png" alt="">
+                <img src="images/References/image 1314.png" alt="" loading="lazy" decoding="async">
               </div>
             </div>
           </div>
           <button class="dress__arrow dress__arrow--next" type="button" aria-label="Следующий">
-            <img src="images/v1_1406.png" alt="">
+            <img src="images/v1_1406.png" alt="" loading="lazy" decoding="async">
           </button>
         </div>
       </div>
@@ -151,14 +158,14 @@
         Если будут вопросы, можете написать нам.
       </p>
 
-      <img class="dress__lisianthus" src="images/v1_1377.png" alt="">
+      <img class="dress__lisianthus" src="images/v1_1377.webp" alt="" loading="lazy" decoding="async">
     </section>
 
     <!-- ───────── DETAILS ───────── -->
     <section class="details">
       <div class="details__tag">
-        <img class="details__flower" src="images/v1_1377.png" alt="">
-        <img class="details__pillow" src="images/v1_1414.png" alt="">
+        <img class="details__flower" src="images/v1_1377.webp" alt="" loading="lazy" decoding="async">
+        <img class="details__pillow" src="images/v1_1414.webp" alt="" loading="lazy" decoding="async">
         <span class="script">Детали</span>
       </div>
 
@@ -180,7 +187,7 @@
 
     <!-- ───────── GUEST FORM ───────── -->
     <section class="form-section">
-      <img class="form-section__clip" src="images/v1_1500.png" alt="">
+      <img class="form-section__clip" src="images/v1_1500.webp" alt="" loading="lazy" decoding="async">
       <div class="form-section__stamp-shadow">
       <div class="stamp stamp--form">
         <h2 class="script script--xl section-title">Анкета гостя</h2>
@@ -227,7 +234,7 @@
           </fieldset>
 
           <fieldset class="group">
-            <legend>Мы забронировали три домика на территории базы отдыха. Планируете ли вы остаться?</legend>
+            <legend>Мы забронировали домики на территории базы отдыха. Планируете ли вы остаться ночевать?</legend>
             <div class="group__options">
               <label class="opt"><input type="radio" name="entry.777208855" value="Да, на первую ночь" aria-required="true">Только первый день</label>
               <label class="opt"><input type="radio" name="entry.777208855" value="Да, на первую и вторую ночь" aria-required="true">Первый и второй день</label>
@@ -237,7 +244,7 @@
           </fieldset>
 
           <fieldset class="group">
-            <legend>Если вы не планируете остаться, нужен ли вам обратный трансфер с площадки в город (Тюмень)?</legend>
+            <legend>Если вы не планируете остаться, нужен ли вам обратный трансфер с площадки в Тюмень?</legend>
             <div class="group__options group__options--row">
               <label class="opt"><input type="radio" name="entry.1550613055" value="Да">Да</label>
               <label class="opt"><input type="radio" name="entry.1550613055" value="Нет">Нет</label>
@@ -291,6 +298,12 @@
   <script>
     const dressCarousel = document.querySelector('.dress__carousel');
     const guestForm = document.querySelector('#guest-form');
+    const heroInviteArrow = document.querySelector('.hero-invite-arrow');
+    const inviteSection = document.querySelector('.invite');
+
+    heroInviteArrow?.addEventListener('click', () => {
+      inviteSection?.scrollIntoView({ block: 'start', behavior: 'smooth' });
+    });
 
     if (guestForm) {
       const googleFormTarget = document.querySelector('iframe[name="google-form-target"]');
