@@ -62,6 +62,10 @@ input, textarea, select {
   overflow: hidden;
 }
 
+.intro {
+  position: relative;
+}
+
 .script {
   font-family: 'Snell Roundhand', cursive;
   font-weight: 400;
@@ -247,6 +251,46 @@ input, textarea, select {
 @media (prefers-reduced-motion: reduce) {
   .hero-invite-arrow {
     animation: none;
+  }
+}
+
+@media (max-width: 599px) {
+  .intro {
+    --intro-screen: min(100svh, 1000px);
+    min-height: var(--intro-screen);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-bottom: max(16px, env(safe-area-inset-bottom));
+  }
+
+  .hero {
+    flex: 0 1 auto;
+    padding-top: clamp(54px, 10svh, 90px);
+  }
+
+  .hero__photo-wrap {
+    height: min(150vw, 840px, calc(var(--intro-screen) - clamp(54px, 10svh, 90px) - 62px));
+  }
+
+  .hero__photo-wrap picture {
+    display: block;
+    height: 100%;
+  }
+
+  .hero__photo-img {
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .hero-invite-arrow {
+    flex: 0 0 auto;
+    margin-top: 12px;
+  }
+
+  .invite {
+    padding-top: 28px;
   }
 }
 
