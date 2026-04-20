@@ -220,15 +220,15 @@
           </fieldset>
 
           <fieldset class="group">
-            <legend>Какой алкоголь предпочитаете?</legend>
+            <legend>Какие напитки предпочитаете?</legend>
             <div class="group__options group__options--grid">
               <label class="opt"><input type="checkbox" name="entry.3966304" value="Игристое">Игристое</label>
               <label class="opt"><input type="checkbox" name="entry.3966304" value="Красное вино">Красное вино</label>
               <label class="opt"><input type="checkbox" name="entry.3966304" value="Белое вино">Белое вино</label>
               <label class="opt"><input type="checkbox" name="entry.3966304" value="Пиво">Пиво</label>
               <label class="opt"><input type="checkbox" name="entry.3966304" value="Виски">Виски</label>
-              <label class="opt"><input type="checkbox" name="entry.3966304" value="Лёхин самогон">Лёхин самогон</label>
-              <label class="opt opt--full"><input type="checkbox" name="entry.3966304" value="Безалкогольные напитки">Безалкогольные напитки</label>
+              <label class="opt"><input type="checkbox" name="entry.3966304" value="Лёхин самогон">Самогон</label>
+              <label class="opt opt--full"><input type="checkbox" name="entry.3966304" value="Безалкогольные напитки">Безалкогольные</label>
             </div>
             <span class="form__error" data-error-for="entry.3966304" hidden>Выберите хотя бы один вариант</span>
           </fieldset>
@@ -236,8 +236,8 @@
           <fieldset class="group">
             <legend>Мы забронировали домики на территории базы отдыха. Планируете ли вы остаться ночевать?</legend>
             <div class="group__options">
-              <label class="opt"><input type="radio" name="entry.777208855" value="Да, на первую ночь" aria-required="true">Только первый день</label>
-              <label class="opt"><input type="radio" name="entry.777208855" value="Да, на первую и вторую ночь" aria-required="true">Первый и второй день</label>
+              <label class="opt"><input type="radio" name="entry.777208855" value="Да, на первую ночь" aria-required="true">Да, на первую ночь</label>
+              <label class="opt"><input type="radio" name="entry.777208855" value="Да, на первую и вторую ночь" aria-required="true">Да, на первую и вторую ночь</label>
               <label class="opt"><input type="radio" name="entry.777208855" value="Нет" aria-required="true">Нет</label>
             </div>
             <span class="form__error" data-error-for="entry.777208855" hidden>Выберите один вариант</span>
@@ -266,7 +266,7 @@
       <!-- ───────── SOCIAL ───────── -->
       <section class="social">
         <p class="social__text">
-          Для удобства, мы создали чат во вконтакте и телеграме.<br>
+          Для удобства, мы создали чат в телеграме и вконтакте.<br>
           Там мы будем делиться более подробной информацией
           о локации, размещении и торжестве.
         </p>
@@ -379,12 +379,13 @@
 
     if (dressCarousel) {
       const track = dressCarousel.querySelector('.dress__carousel-track');
+      const viewport = dressCarousel.querySelector('.dress__carousel-viewport');
       const originalSlides = Array.from(dressCarousel.querySelectorAll('.dress__slide'));
       const prevButton = dressCarousel.querySelector('.dress__arrow--prev');
       const nextButton = dressCarousel.querySelector('.dress__arrow--next');
       const slideCount = originalSlides.length;
 
-      if (slideCount > 0) {
+      if (track && viewport && slideCount > 0) {
         const createSet = (isClone) => {
           const set = document.createElement('div');
           set.className = 'dress__carousel-set';
@@ -409,6 +410,12 @@
         let currentIndex = 0;
         let activeDirection = 0;
         let isAnimating = false;
+        let isDragging = false;
+        let dragStartX = 0;
+        let dragStartY = 0;
+        let dragDeltaX = 0;
+        let dragBaseOffset = 0;
+        let activePointerId = null;
 
         const setTrackTransition = (enabled) => {
           track.style.transition = enabled ? '' : 'none';
@@ -421,6 +428,12 @@
         const setCarouselPosition = (set, index, animate = true) => {
           setTrackTransition(animate);
           track.style.transform = `translateX(${-getSlideOffset(set, index)}px)`;
+        };
+
+        const stopDragging = () => {
+          isDragging = false;
+          activePointerId = null;
+          viewport.classList.remove('is-dragging');
         };
 
         const recycleAfterMove = () => {
@@ -441,7 +454,7 @@
         };
 
         const moveCarousel = (direction) => {
-          if (isAnimating) return;
+          if (isAnimating || isDragging) return;
 
           activeDirection = direction;
           currentIndex += direction;
@@ -460,11 +473,57 @@
           setCarouselPosition(activeSet, currentIndex, true);
         };
 
+        const finishDrag = () => {
+          if (!isDragging) return;
+
+          const threshold = Math.min(80, viewport.clientWidth * 0.18);
+          const direction = dragDeltaX < 0 ? 1 : -1;
+
+          stopDragging();
+
+          if (Math.abs(dragDeltaX) >= threshold) {
+            moveCarousel(direction);
+          } else {
+            setCarouselPosition(activeSet, currentIndex, true);
+          }
+        };
+
         track.addEventListener('transitionend', (event) => {
           if (event.target === track && event.propertyName === 'transform') {
             recycleAfterMove();
           }
         });
+        viewport.addEventListener('pointerdown', (event) => {
+          if (isAnimating || event.button > 0) return;
+
+          isDragging = true;
+          activePointerId = event.pointerId;
+          dragStartX = event.clientX;
+          dragStartY = event.clientY;
+          dragDeltaX = 0;
+          dragBaseOffset = getSlideOffset(activeSet, currentIndex);
+          setTrackTransition(false);
+          viewport.classList.add('is-dragging');
+          viewport.setPointerCapture?.(event.pointerId);
+        });
+        viewport.addEventListener('pointermove', (event) => {
+          if (!isDragging || event.pointerId !== activePointerId) return;
+
+          const deltaX = event.clientX - dragStartX;
+          const deltaY = event.clientY - dragStartY;
+
+          if (Math.abs(deltaY) > Math.abs(deltaX) && Math.abs(deltaY) > 8) {
+            finishDrag();
+            return;
+          }
+
+          dragDeltaX = deltaX;
+          track.style.transform = `translateX(${(-dragBaseOffset) + dragDeltaX}px)`;
+        });
+        viewport.addEventListener('pointerup', finishDrag);
+        viewport.addEventListener('pointercancel', finishDrag);
+        viewport.addEventListener('lostpointercapture', finishDrag);
+        viewport.addEventListener('dragstart', (event) => event.preventDefault());
         prevButton.addEventListener('click', () => moveCarousel(-1));
         nextButton.addEventListener('click', () => moveCarousel(1));
         window.addEventListener('resize', () => setCarouselPosition(activeSet, currentIndex, false));
