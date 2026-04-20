@@ -10,6 +10,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="images/pillow_icon.png">
+  <link rel="apple-touch-icon" href="images/pillow_icon.png">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -193,6 +195,9 @@
       <div class="form-section__stamp-shadow">
       <div class="stamp stamp--form">
         <h2 class="script script--xl section-title">Анкета гостя</h2>
+        <p class="form__note">
+          Пожалуйста, заполните анкету отдельно на каждого гостя, даже если вы будете парой до 25 июня.
+        </p>
 
         <iframe class="google-form-target" name="google-form-target" title="Google Forms response"></iframe>
 
@@ -207,7 +212,6 @@
 
           <label class="field">
             <span class="field__label">Ваши имя и фамилия</span>
-            <span class="field__label field__label--companion">Если вы будете с парой, укажите несколько имён</span>
             <input type="text" name="entry.2120727497" autocomplete="name" aria-required="true">
             <span class="form__error" data-error-for="entry.2120727497" hidden>Укажите имя и фамилию</span>
           </label>
@@ -311,7 +315,9 @@
       const googleFormTarget = document.querySelector('iframe[name="google-form-target"]');
       const submitButton = guestForm.querySelector('.btn--submit');
       const successMessage = guestForm.querySelector('.form__message');
+      const firstTextField = guestForm.querySelector('input[name="entry.2120727497"]');
       let waitingForGoogleResponse = false;
+      let formWasSent = false;
 
       const requiredFields = [
         { name: 'entry.2120727497', type: 'text' },
@@ -322,6 +328,14 @@
 
       const getControls = (name) => Array.from(guestForm.querySelectorAll(`[name="${name}"]`));
       const getError = (name) => guestForm.querySelector(`[data-error-for="${name}"]`);
+
+      const resetSentState = () => {
+        if (!formWasSent) return;
+
+        formWasSent = false;
+        successMessage.hidden = true;
+        submitButton.textContent = 'Отправить';
+      };
 
       const validateField = ({ name, type }, showError = true) => {
         const controls = getControls(name);
@@ -336,16 +350,29 @@
       };
 
       guestForm.addEventListener('input', (event) => {
+        resetSentState();
         const field = requiredFields.find(({ name }) => name === event.target.name);
         if (field) validateField(field, false);
       });
 
       guestForm.addEventListener('change', (event) => {
+        resetSentState();
         const field = requiredFields.find(({ name }) => name === event.target.name);
         if (field) validateField(field, false);
       });
 
       guestForm.addEventListener('submit', (event) => {
+        if (formWasSent) {
+          event.preventDefault();
+          formWasSent = false;
+          successMessage.hidden = true;
+          submitButton.type = 'submit';
+          submitButton.textContent = 'Отправить';
+          guestForm.scrollIntoView({ block: 'start', behavior: 'smooth' });
+          firstTextField?.focus({ preventScroll: true });
+          return;
+        }
+
         let firstInvalidField = null;
 
         requiredFields.forEach((field) => {
@@ -365,6 +392,7 @@
         waitingForGoogleResponse = true;
         successMessage.hidden = true;
         submitButton.disabled = true;
+        submitButton.type = 'submit';
         submitButton.textContent = 'Отправляем...';
       });
 
@@ -373,8 +401,10 @@
 
         waitingForGoogleResponse = false;
         guestForm.reset();
+        formWasSent = true;
         submitButton.disabled = false;
-        submitButton.textContent = 'Отправить';
+        submitButton.type = 'submit';
+        submitButton.textContent = 'Заполнить за другого гостя';
         successMessage.hidden = false;
       });
     }
