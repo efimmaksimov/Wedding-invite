@@ -249,7 +249,7 @@
             <span class="form__error" data-error-for="entry.777208855" hidden>Выберите один вариант</span>
           </fieldset>
 
-          <fieldset class="group">
+          <fieldset class="group" data-transfer-group hidden>
             <legend>Если вы не планируете остаться, нужен ли вам обратный трансфер с площадки в Тюмень?</legend>
             <div class="group__options group__options--row">
               <label class="opt"><input type="radio" name="entry.1550613055" value="Да">Да</label>
@@ -328,6 +328,21 @@
 
       const getControls = (name) => Array.from(guestForm.querySelectorAll(`[name="${name}"]`));
       const getError = (name) => guestForm.querySelector(`[data-error-for="${name}"]`);
+      const transferGroup = guestForm.querySelector('[data-transfer-group]');
+      const overnightControls = getControls('entry.777208855');
+      const transferControls = getControls('entry.1550613055');
+
+      const updateTransferVisibility = () => {
+        const shouldShowTransfer = overnightControls.some((control) => control.checked && control.value === 'Нет');
+
+        transferGroup.hidden = !shouldShowTransfer;
+
+        if (!shouldShowTransfer) {
+          transferControls.forEach((control) => {
+            control.checked = false;
+          });
+        }
+      };
 
       const resetSentState = () => {
         if (!formWasSent) return;
@@ -359,6 +374,7 @@
         resetSentState();
         const field = requiredFields.find(({ name }) => name === event.target.name);
         if (field) validateField(field, false);
+        if (event.target.name === 'entry.777208855') updateTransferVisibility();
       });
 
       guestForm.addEventListener('submit', (event) => {
@@ -401,12 +417,15 @@
 
         waitingForGoogleResponse = false;
         guestForm.reset();
+        updateTransferVisibility();
         formWasSent = true;
         submitButton.disabled = false;
         submitButton.type = 'submit';
         submitButton.textContent = 'Заполнить за другого гостя';
         successMessage.hidden = false;
       });
+
+      updateTransferVisibility();
     }
 
     if (dressCarousel) {
